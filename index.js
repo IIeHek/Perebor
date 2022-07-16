@@ -1,9 +1,11 @@
 "use strict";
 let arrOfSet = [];
+//let arrTransSet = [];
 let set = new Set();
 
 field.addEventListener('keydown', inputInject);
 btn.addEventListener('click', btnNewSet);
+//btnResult.addEventListener('click', resultShow);
 
 function inputInject(e) {
     if (e.code == 'Enter' || e.code == 'NumpadEnter') {
@@ -20,30 +22,51 @@ function inputInject(e) {
 function inputShow() {
     const preInput = document.querySelector('#preInput');
     let strlist = '';
-    set.forEach((item) => {
+    const div = document.createElement('div');
+    set.forEach((item, index) => {
         strlist = strlist+`<p>${item}</p>`;
     });
     preInput.lastElementChild.innerHTML = strlist;
 };
 
 function btnNewSet() {
-    const newElem = document.querySelector('#preInput');
-    let newInputSaved = document.createElement('div');
-    arrOfSet.push(set);
-    setCreate();
-    //Нужно получить последний элемент массива, для дальнейшего добавление в него значений, через set
-    arrOfSet.at(-1);
-    newInputSaved.className = 'input__saved';
-    preInput.appendChild(newInputSaved);
-    
-    let strlist = '';
-    set.forEach((item) => {
-        strlist = strlist+`<p>${item}</p>`;
-    });
-    preInput.lastElementChild.innerHTML = strlist;
+    if (set.size != 0) {
+        const newElem = document.querySelector('#preInput');
+        let newInputSaved = document.createElement('div');
+        const arrTransSet = [...set];
+        arrOfSet.push(arrTransSet);
+//    arrOfSet.at(-1);
+        newInputSaved.className = 'input__saved';
+        preInput.appendChild(newInputSaved);
+        set.clear();
+//        process();
+        if (arrOfSet.length > 1) {
+            const resultElem = document.querySelector('#resultElem');
+            let strlist = '';
+            arrOfSet.forEach.item((item, index) => {
+//                item.forEach((item, index) {
+                //            strlist = 0 элемент 0 массива + 0 элемент 1 массива;
+          strlist = strlist + `<p>${arrTransSet[0]}`+`${arrTransSet[1]}</p>`;
+//                });
+            });
+            resultElem.innerHTML = strlist;
+            console.log(arrOfSet);
+        };
+    };
 };
 
-function setCreate() {
-    let set = new Set();
-    arrOfSet.push(set);
-}
+/*function process() {
+//    for (i = 0; i < a.length; i++) {};
+    const resultElem = document.querySelector('#resultElem');
+    let strlist = '';
+    arrOfSet.forEach((item, index) => {
+        console.log(arrTransSet);
+        //            strlist = 0 элемент 0 массива + 0 элемент 1 массива;
+        strlist = strlist + `<p>${arrOfSet[0]}`+`${arr}</p>`;
+    });
+    resultElem.innerHTML = strlist;
+};*/
+
+function resultShow() {
+    const resultElem = document.querySelector('#resultBlock');
+};
