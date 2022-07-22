@@ -43,14 +43,14 @@ function btnNewSet() {
         if (arrOfSet.length > 1) {
             const resultElem = document.querySelector('#resultElem');
             let strlist = '';
-            arrOfSet.forEach.item((item, index) => {
-//                item.forEach((item, index) {
+            arrOfSet.forEach((item, index, arr) => {
+                item.forEach((item, index, arr) => {
                 //            strlist = 0 элемент 0 массива + 0 элемент 1 массива;
-          strlist = strlist + `<p>${arrTransSet[0]}`+`${arrTransSet[1]}</p>`;
-//                });
+          strlist = strlist + `<p>${item}`+`${item}</p>`;
+                    console.log(item);
+                });
             });
             resultElem.innerHTML = strlist;
-            console.log(arrOfSet);
         };
     };
 };
